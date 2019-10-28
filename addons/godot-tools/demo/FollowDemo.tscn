@@ -1,30 +1,132 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/godot-tools/demo/imgs/yellow_arrow.png" type="Texture" id=1]
-[ext_resource path="res://addons/godot-tools/follow_2d.gd" type="Script" id=2]
-[ext_resource path="res://addons/godot-tools/hammer.png" type="Texture" id=3]
-[ext_resource path="res://addons/godot-tools/demo/imgs/red_circle.png" type="Texture" id=4]
-[ext_resource path="res://addons/godot-tools/demo/mouse_follow_target.gd" type="Script" id=5]
+[ext_resource path="res://addons/godot-tools/src/follow_2d.gd" type="Script" id=2]
+[ext_resource path="res://addons/godot-tools/icons/arrive.png" type="Texture" id=3]
+[ext_resource path="res://addons/godot-tools/demo/mouse_follow_target.gd" type="Script" id=4]
+[ext_resource path="res://addons/godot-tools/demo/imgs/red_circle.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 17.2768
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 15.1577
 
 [node name="Node2D" type="Node2D"]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="Leader" type="KinematicBody2D" parent="."]
+position = Vector2( 357.446, 73.6446 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="yellow_arrow" type="Sprite" parent="KinematicBody2D"]
+[node name="yellow_arrow" type="Sprite" parent="Leader"]
 texture = ExtResource( 1 )
 
-[node name="Follow2D" type="Node2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leader"]
+shape = SubResource( 1 )
+
+[node name="Follow2D" type="Node2D" parent="Leader"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 target_node_path = NodePath("../../mouse_follow")
 target_position = Vector2( 0, 0 )
-distance_threshold = 50
+distance_threshold = 60
 
-[node name="mouse_follow" type="Sprite" parent="."]
-position = Vector2( 478.579, 238.474 )
+[node name="Follow1" type="KinematicBody2D" parent="."]
+position = Vector2( 235.304, 67.0585 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="yellow_arrow" type="Sprite" parent="Follow1"]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Follow1"]
+shape = SubResource( 1 )
+
+[node name="Follow2D" type="Node2D" parent="Follow1"]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+target_node_path = NodePath("../../Leader")
+target_position = Vector2( 0, 0 )
+distance_threshold = 60
+
+[node name="Follow2" type="KinematicBody2D" parent="."]
+position = Vector2( 664.598, 117.352 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="yellow_arrow" type="Sprite" parent="Follow2"]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Follow2"]
+shape = SubResource( 1 )
+
+[node name="Follow2D" type="Node2D" parent="Follow2"]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+target_node_path = NodePath("../../Follow1")
+target_position = Vector2( 0, 0 )
+distance_threshold = 60
+
+[node name="Follow3" type="KinematicBody2D" parent="."]
+position = Vector2( 314.337, 191.596 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="yellow_arrow" type="Sprite" parent="Follow3"]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Follow3"]
+shape = SubResource( 1 )
+
+[node name="Follow2D" type="Node2D" parent="Follow3"]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+target_node_path = NodePath("../../Follow2")
+target_position = Vector2( 0, 0 )
+distance_threshold = 60
+
+[node name="Follow4" type="KinematicBody2D" parent="."]
+position = Vector2( 185.01, 174.232 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="yellow_arrow" type="Sprite" parent="Follow4"]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Follow4"]
+shape = SubResource( 1 )
+
+[node name="Follow2D" type="Node2D" parent="Follow4"]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+target_node_path = NodePath("../../Follow3")
+target_position = Vector2( 0, 0 )
+distance_threshold = 60
+
+[node name="mouse_follow" type="StaticBody2D" parent="."]
+position = Vector2( 478.579, 240.579 )
 rotation = 0.261799
-scale = Vector2( 0.381807, 0.381807 )
-texture = ExtResource( 4 )
-script = ExtResource( 5 )
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="mouse_follow"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_follow"]
+shape = SubResource( 2 )
