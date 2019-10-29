@@ -1,13 +1,8 @@
 tool
 extends "base_steering.gd"
+
 export var slow_radius:float = 200.0
 
-func _enter_tree():
-	._enter_tree()
-
-func _ready():
-	._ready()
-	
 func calculate(delta:float, tgt_pos: Vector2) -> SteeringCalc:
 	var dist = from_node.global_position.distance_to(tgt_pos)
 	
@@ -22,3 +17,5 @@ func calculate(delta:float, tgt_pos: Vector2) -> SteeringCalc:
 	var sterring = (desired_velocity - velocity) / mass;
 	var vel = velocity + sterring
 	return SteeringCalc.new(vel, vel.angle())
+	
+	

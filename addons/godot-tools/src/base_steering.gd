@@ -3,6 +3,7 @@ extends Node2D
 
 export var target_node_path:NodePath setget set_target_node_path, get_target_node_path
 var target_node : Node2D setget set_target_node, get_target_node
+var target_steering_node
 export var target_position : Vector2 setget set_target_position, get_target_position
 # warning-ignore:unused_class_variable
 export var mass = 2.0
@@ -13,6 +14,20 @@ export var distance_threshold = 50
 export var change_node_rotation = true
 var from_node:Node2D
 var velocity:Vector2
+
+# Just to identify this script/node between all code
+func is_godot_tools(): return true
+
+func search_by_steering_node(n:Node):
+	""" Recursive func that search all child looking for godot_tools node"""
+	
+	if n.has_method("is_godot_tools") and n.is_godot_tools():
+		return n
+	
+	for ch in n.get_children():
+		var found = search_by_steering_node(ch)
+		if found:
+			return found
 
 # warning-ignore:unused_argument
 func calculate (delta: float, tgt_pos:Vector2) -> SteeringCalc:
@@ -26,8 +41,7 @@ func _enter_tree():
 func _ready():
 	if target_node_path:
 		target_node = get_node(target_node_path)
-		if target_node:
-			set_physics_process(true)
+		set_target_node(target_node)
 		
 func set_target_node_path(nd):
 	target_node_path  = nd
@@ -76,6 +90,8 @@ func resolve_node() -> Node2D:
 	
 func set_target_node(nd):
 	target_node = nd
+	if target_node:
+		target_steering_node = search_by_steering_node(target_node)
 	set_physics_process(nd != null)
 	
 func get_target_node():
