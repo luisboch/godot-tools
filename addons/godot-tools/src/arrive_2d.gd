@@ -9,7 +9,7 @@ func _ready():
 	._ready()
 	
 func calculate(delta:float, tgt_pos: Vector2) -> SteeringCalc:
-	var dist = global_position.distance_to(tgt_pos)
+	var dist = from_node.global_position.distance_to(tgt_pos)
 	
 	if dist <  distance_threshold:
 		return null
