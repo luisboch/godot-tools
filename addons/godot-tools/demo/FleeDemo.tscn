@@ -35,7 +35,6 @@ target_node_path = NodePath("../../mouse_follow")
 target_position = Vector2( 0, 0 )
 max_speed = 200
 distance_threshold = 500
-scale_by_proximity = true
 
 [node name="mouse_follow" type="StaticBody2D" parent="."]
 position = Vector2( 478.579, 240.579 )

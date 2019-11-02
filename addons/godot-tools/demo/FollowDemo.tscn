@@ -15,6 +15,7 @@ radius = 15.1577
 [node name="Node2D" type="Node2D"]
 
 [node name="Leader" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 357.446, 73.6446 )
 __meta__ = {
 "_edit_group_": true
@@ -36,6 +37,7 @@ target_position = Vector2( 0, 0 )
 distance_threshold = 60
 
 [node name="Follow1" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 235.304, 67.0585 )
 __meta__ = {
 "_edit_group_": true
@@ -57,6 +59,7 @@ target_position = Vector2( 0, 0 )
 distance_threshold = 60
 
 [node name="Follow2" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 664.598, 117.352 )
 __meta__ = {
 "_edit_group_": true
@@ -78,6 +81,7 @@ target_position = Vector2( 0, 0 )
 distance_threshold = 60
 
 [node name="Follow3" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 314.337, 191.596 )
 __meta__ = {
 "_edit_group_": true
@@ -99,6 +103,7 @@ target_position = Vector2( 0, 0 )
 distance_threshold = 60
 
 [node name="Follow4" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 185.01, 174.232 )
 __meta__ = {
 "_edit_group_": true
